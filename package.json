@@ -2,5 +2,8 @@
   "name": "@i61/fancy-lib-flexible",
   "version": "0.0.3",
   "main": "index.js",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "prepublishOnly": "npm version patch"
+  }
 }

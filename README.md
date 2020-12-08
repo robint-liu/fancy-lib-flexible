@@ -4,16 +4,18 @@
 
 ## 安装
 ```bash
-npm config set registry http://verdaccio.61info.com/
-npm install @i61/fancy-lib-flexible
+npm install @i61/fancy-lib-flexible -S
 ```
 
+```bash
+yarn add @i61/fancy-lib-flexible -S
+```
 ## 引入
 
 ```js
 import '@i61/fancy-lib-flexible'
 
-或者写成下面这样：
+// 或者写成下面这样：
 
 import fancyLibFlexible from '@i61/fancy-lib-flexible'
 fancyLibFlexible.setMaxWidth(666) // 默认值为768(ipad宽度)，可自定义设备最大宽度，无特殊需要时可不写。
@@ -26,9 +28,29 @@ window.lib ==> {
   flexible:{
     dpr: 3,
     rem: 37.5,
-    px2rem: ƒ (px),
-    refreshRem: ƒ refreshRem(),
-    rem2px: ƒ (rem),
+    px2rem: function (d) {
+      var val = parseFloat(d) / this.rem;
+      if (typeof d === 'string' && d.match(/px$/)) {
+        val += 'rem';
+      }
+      return val;
+  },
+    refreshRem: function refreshRem() {
+      var width = docEl.getBoundingClientRect().width;
+      if (width > maxWidth) {
+        width = maxWidth;
+      }
+      var rem = width / 10;
+      docEl.style.fontSize = rem + 'px';
+      flexible.rem = win.rem = rem;
+    },
+    rem2px: function (d) {
+      var val = parseFloat(d) * this.rem;
+      if (typeof d === 'string' && d.match(/rem$/)) {
+        val += 'px';
+      }
+      return val;
+    },
   }
 }
 ```
@@ -37,7 +59,7 @@ window.lib ==> {
 ```css
 .btn-android {
   background-image: url("../img/@2x/android.png?v=@@version");
-  [data-dpr="3"] & {
+  [data-dpr="3"] {
     background-image: url("../img/@3x/android.png?v=@@version");
   }
 }
