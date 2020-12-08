@@ -10,7 +10,8 @@ var libFlexible = (function (win, lib) {
   var maxWidth = 768;
 
   // 暂忽略meta标签的影响
-  /*   if (metaEl) {
+  /* 
+    if (metaEl) {
       console.warn('将根据已有的meta标签来设置缩放比例');
       var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
       if (match) {
@@ -32,7 +33,8 @@ var libFlexible = (function (win, lib) {
           scale = parseFloat((1 / dpr).toFixed(2));
         }
       }
-    } */
+    } 
+  */
 
   if (!dpr && !scale) {
     // var isAndroid = win.navigator.appVersion.match(/android/gi);
@@ -97,13 +99,14 @@ var libFlexible = (function (win, lib) {
   }, false);
 
   if (doc.readyState === 'complete') {
-    doc.body.style.fontSize = 12 * dpr + 'px';
+    // doc.body.style.fontSize = 12 * dpr + 'px';
+    doc.body.style.fontSize = '12px';
   } else {
     doc.addEventListener('DOMContentLoaded', function () {
-      doc.body.style.fontSize = 12 * dpr + 'px';
+      // doc.body.style.fontSize = 12 * dpr + 'px';
+      doc.body.style.fontSize = '12px';
     }, false);
   }
-
 
   refreshRem();
 
