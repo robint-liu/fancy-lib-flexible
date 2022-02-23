@@ -1,19 +1,19 @@
-# @i61/fancy-lib-flexible
+# fancy-lib-flexible
 ### 基于lib-flexible修改，根据html标签的宽度、window.devicePixelRatio等自动设定html标签的font-size及data-dpr属性。
 
 
 ## 安装
 ```bash
-npm install @i61/fancy-lib-flexible -S
+npm install fancy-lib-flexible -S
 ```
 
 ```bash
-yarn add @i61/fancy-lib-flexible -S
+yarn add fancy-lib-flexible -S
 ```
 ## 引入
 
 ```js
-import '@i61/fancy-lib-flexible'
+import 'fancy-lib-flexible'
 window.lib.flexible.setMaxWidth(666) // 默认值为768(ipad宽度)，可自定义设备最大宽度，无特殊需要时可不写。
 ```
 
